@@ -1,6 +1,5 @@
 <template>
   <div class="Register">
-
     <div class="container">
       <h1>Register</h1>
       {{ registerModel }}
