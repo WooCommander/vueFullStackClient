@@ -24,7 +24,7 @@ defineProps<{
 }>()
 const registerModel: { email: string, password: string } = reactive({ email: "", password: "" })
 const onRegister = async () => {
-  const response = await AuthhenticationService.register({ email: registerModel.email, password: registerModel.password });
+  const response = await AuthhenticationService.registerPost({ email: registerModel.email, password: registerModel.password });
   console.log(response.data);
 
 }
