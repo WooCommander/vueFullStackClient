@@ -12,6 +12,7 @@
       </div>
       <button @click="onRegister">Register</button>
     </div>
+    Response:{{ result }}
   </div>
 </template>
 
@@ -23,11 +24,13 @@ defineProps<{
   msg: string
 }>()
 const registerModel: { email: string, password: string } = reactive({ email: "", password: "" })
+const result: { message: string } = reactive({ message: "" });
 const onRegister = async () => {
   const response = await AuthhenticationService.registerPost({ email: registerModel.email, password: registerModel.password });
+  result.message = response.data.message;
   console.log(response.data);
-
 }
+
 </script>
 <style>
 @media (min-width: 1024px) {
