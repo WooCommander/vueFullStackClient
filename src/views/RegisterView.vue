@@ -9,6 +9,7 @@
       <div class="field">
         <input type="password" placeholder="password" v-model="registerModel.password" />
       </div>
+      <div v-if="Error" class="error">{{ Error }}</div>
       <button @click="onRegister">Register</button>
       <div>Response:{{ result }}</div>
     </div>
@@ -25,14 +26,27 @@ defineProps<{
 }>()
 const registerModel: { email: string, password: string } = reactive({ email: "", password: "" })
 const result: { message: string } = reactive({ message: "" });
+let Error: any = reactive();
 const onRegister = async () => {
-  const response = await AuthhenticationService.registerPost({ email: registerModel.email, password: registerModel.password });
-  result.message = response.data.message;
-  console.log(response.data);
+  try {
+    const response = await AuthhenticationService.registerPost({ email: registerModel.email, password: registerModel.password });
+    result.message = response.data.message;
+    console.log(response.data);
+  } catch (error: any) {
+    Error = error.response.data.error;
+  }
+
+
+
 }
 
 </script>
 <style>
+.Register .error {
+  color: red;
+}
+
+
 @media (min-width: 1024px) {
   .Register {
     min-height: 100vh;
