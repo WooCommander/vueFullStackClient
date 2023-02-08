@@ -8,5 +8,8 @@ export default {
   },
   register(credentials: any) {
     return api().post('register', credentials)
+  },
+  login(credentials: any) {
+    return api().post('login', credentials)
   }
 }
